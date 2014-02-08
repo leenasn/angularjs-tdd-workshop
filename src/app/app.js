@@ -1,14 +1,13 @@
 angular.module( 'ngBoilerplate', [
   'templates-app',
   'templates-common',
-  'ngBoilerplate.home',
-  'ngBoilerplate.about',
+  'puzzle.followers',
   'ui.state',
   'ui.route'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
+  $urlRouterProvider.otherwise( '/' );
 })
 
 .run( function run () {
