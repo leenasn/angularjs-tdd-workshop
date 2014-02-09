@@ -28,8 +28,8 @@ angular.module("puzzle.followers",['ui.router', 'ui.state'])
 })
 
 .controller("FollowersController", function($scope, $state, $stateParams, followersFactory){
-	$scope.user = followersFactory.getUser();
 	followersFactory.fetchFollowers($stateParams.handle);
+	$scope.user = followersFactory.getUser();
 })
 
 ;

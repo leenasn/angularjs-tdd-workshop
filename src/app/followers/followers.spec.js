@@ -46,18 +46,15 @@ describe("Follwers", function(){
 			compile = $compile;
 		}));
 		it("should show followers details", function(){
-			var newScope = scope.$new();
-			newScope.user = {
+			scope.user = {
 				name: 'twitter',
 				followers: ['firefox', 'chrome']
 			};
 			var template = templateCache.get('followers/followers.tpl.html');
-			var element = compile(template)(newScope);
-			console.log(newScope.$parent.$parent);
-			newScope.$digest();
-			console.log(element);
-			expect(element.html()).toContain(newScope.user.name);
-			//expect(element.html()).toContain(scope.user.followers[0]);
+			var element = compile(angular.element(template))(scope);
+			scope.$apply();
+			expect(element.html()).toContain(scope.user.name);
+			expect(element.html()).toContain(scope.user.followers[0]);
 		});
 	});
 	
