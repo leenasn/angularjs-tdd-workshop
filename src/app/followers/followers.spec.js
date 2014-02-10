@@ -51,11 +51,25 @@ describe("Follwers", function(){
 				followers: ['firefox', 'chrome']
 			};
 			var template = templateCache.get('followers/followers.tpl.html');
-			var element = compile(angular.element(template))(scope);
+			var element = compile(template)(scope);
 			scope.$apply();
 			expect(element.html()).toContain(scope.user.name);
 			expect(element.html()).toContain(scope.user.followers[0]);
 		});
+		it("should show option to change twitter handle", function(){
+			var template = "<select-handle></select-handle>";
+			var html = (compile(template)(scope)).html();
+			expect(html).toContain("input");
+		});
+		it("should change the twitter handle on click of the button", inject(function($state){
+			var template = "<select-handle></select-handle>";
+			var element = (compile(template)(scope));
+			element.scope().handle = "firefox";
+			scope.$apply();
+			spyOn($state, 'transitionTo');
+			element.find("button").triggerHandler("click");
+			expect($state.transitionTo).toHaveBeenCalled();
+		}));
 	});
 	
 })

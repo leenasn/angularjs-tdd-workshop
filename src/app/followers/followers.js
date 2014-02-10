@@ -32,4 +32,16 @@ angular.module("puzzle.followers",['ui.router', 'ui.state'])
 	$scope.user = followersFactory.getUser();
 })
 
+.directive("selectHandle", function($state){
+	return {
+		restrict: 'E',
+		scope: {},
+		template: '<input type="text" ng-model="handle"></input><button ng-click="showFollowers(handle)">Change</button>',
+		controller: function($scope){
+			$scope.showFollowers = function(handle){
+				$state.transitionTo('followers', {handle: handle});
+			};
+		}
+	};
+})
 ;
